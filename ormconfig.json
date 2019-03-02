@@ -2,9 +2,8 @@
   {
     "name": "production",
     "type": "postgres",
-    "synchronize": true,
-    "logging": true,
-    "database": "inab"
+    "synchronize": false,
+    "logging": true
   },
   {
     "name": "development",

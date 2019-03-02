@@ -2,6 +2,10 @@
   "name": "inab",
   "private": true,
   "scripts": {
+    "start": "run-p build:common:watch start:web start:server",
+    "build:common:watch": "lerna run build:watch --scope=@inab/common",
+    "start:web": "lerna run start --scope=@inab/web",
+    "start:server": "lerna run start --scope=@inab/server",
     "build:common": "lerna run build --scope=@inab/common",
     "build:web": "lerna run build --scope={@inab/common,@inab/web}",
     "build:server": "lerna run build --scope={@inab/common,@inab/server}",

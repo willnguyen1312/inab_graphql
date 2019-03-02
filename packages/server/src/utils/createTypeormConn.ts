@@ -1,5 +1,5 @@
 import { createConnection, getConnectionOptions } from 'typeorm';
-import { IS_PROD, POSTGRES_DATABASE_URL } from '../config';
+import { IS_PROD } from '../config';
 import { User } from '../entity/User';
 
 export const createTypeormConn = async () => {
@@ -7,7 +7,7 @@ export const createTypeormConn = async () => {
   (await IS_PROD)
     ? createConnection({
         ...connectionOptions,
-        url: POSTGRES_DATABASE_URL,
+        url: process.env.DATABASE_URL as string,
         entities: [User],
         name: 'default',
       } as any).then(conn => conn.runMigrations())

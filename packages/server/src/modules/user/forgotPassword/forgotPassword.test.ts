@@ -1,7 +1,7 @@
 import * as faker from 'faker';
 import * as Redis from 'ioredis';
-import { TEST_HOST } from 'server/src/config';
 import { Connection } from 'typeorm';
+import { TEST_HOST } from '../../../config';
 import { User } from '../../../entity/User';
 import { createTestConn } from '../../../testUtils/createTestConn';
 import { createForgotPasswordLink } from '../../../utils/createForgotPasswordLink';

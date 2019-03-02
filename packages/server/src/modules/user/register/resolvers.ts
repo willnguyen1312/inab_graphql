@@ -1,5 +1,5 @@
-import { IS_PROD } from 'server/src/config';
 import * as yup from 'yup';
+import { IS_PROD } from '../../../config';
 import { User } from '../../../entity/User';
 import { ResolverMap } from '../../../types/graphql-utils';
 import { formatYupError } from '../../../utils/formatYupError';

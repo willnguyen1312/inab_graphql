@@ -4,15 +4,12 @@ import { User } from '../entity/User';
 
 export const createTypeormConn = async () => {
   const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
-  const createConn = IS_PROD
+  (await IS_PROD)
     ? createConnection({
         ...connectionOptions,
         url: POSTGRES_DATABASE_URL,
         entities: [User],
         name: 'default',
-      } as any)
+      } as any).then(conn => conn.runMigrations())
     : createConnection({ ...connectionOptions, name: 'default' });
-
-  const connection = await createConn;
-  await connection.runMigrations();
 };

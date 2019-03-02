@@ -1,6 +1,6 @@
 import * as faker from 'faker';
-import { TEST_HOST } from 'server/src/config';
 import { Connection } from 'typeorm';
+import { TEST_HOST } from '../../../config';
 import { User } from '../../../entity/User';
 import { createTestConn } from '../../../testUtils/createTestConn';
 import { TestClient } from '../../../utils/TestClient';

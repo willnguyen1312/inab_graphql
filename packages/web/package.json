@@ -1,0 +1,33 @@
+{
+  "name": "@inab/web",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@inab/common": "1.0.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-scripts": "^2.1.5",
+    "typescript": "^3.3.3333"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.10.4",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
+    "@types/webpack-env": "^1.13.8",
+    "cross-env": "^5.2.0"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=./src react-scripts start",
+    "build": "cross-env NODE_PATH=./src react-scripts build",
+    "test": "cross-env NODE_PATH=./src react-scripts test",
+    "test:ci": "cross-env CI=true NODE_PATH=./src react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

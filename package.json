@@ -1,0 +1,20 @@
+{
+  "name": "inab",
+  "private": true,
+  "scripts": {
+    "build:web": "lerna run build --scope={@inab/common,@inab/web}",
+    "build:server": "lerna run build --scope={@inab/common,@inab/server}",
+    "heroku-postbuild": "yarn build:server"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": []
+  },
+  "devDependencies": {
+    "lerna": "^3.13.1",
+    "tslint": "^5.13.1",
+    "tslint-config-prettier": "^1.18.0"
+  }
+}

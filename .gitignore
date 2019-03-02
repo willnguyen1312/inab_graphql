@@ -1,0 +1,13 @@
+# Netlify deployment from local
+.netlify
+
+# Custom
+.idea
+.vscode
+_temp
+node_modules
+build
+*.log
+dump.rdb
+dist
+.env

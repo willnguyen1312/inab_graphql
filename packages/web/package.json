@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "@inab/common": "1.0.0",
+    "apollo-boost": "^0.3.1",
+    "graphql": "^14.1.1",
     "react": "^16.8.3",
+    "react-apollo": "^2.5.1",
     "react-dom": "^16.8.3",
     "react-scripts": "^2.1.5",
     "typescript": "^3.3.3333"
@@ -15,6 +18,7 @@
     "@types/react": "^16.8.6",
     "@types/react-dom": "^16.8.2",
     "@types/webpack-env": "^1.13.8",
+    "apollo": "^2.5.3",
     "cross-env": "^5.2.0"
   },
   "scripts": {
@@ -22,7 +26,10 @@
     "build": "cross-env NODE_PATH=./src react-scripts build",
     "test": "cross-env NODE_PATH=./src react-scripts test",
     "test:ci": "cross-env CI=true NODE_PATH=./src react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "schema:download": "apollo-codegen introspect-schema http://localhost:4000 --output schema.json",
+    "codegen:generate": "apollo-codegen generate src/**/*.tsx --schema schema.json --target ts-modern",
+    "gen:types": "run-p schema:download codegen:generate"
   },
   "browserslist": [
     ">0.2%",

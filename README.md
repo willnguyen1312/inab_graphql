@@ -17,6 +17,7 @@ Here's a curated list of packages that I use 😎
 - [ ] [Reach Router](https://reach.tech/router)
 - [ ] [Apollo React](https://www.apollographql.com/docs/react/)
 - [ ] [Formik](https://jaredpalmer.com/formik/)
+- [ ] [Rechart](http://recharts.org)
 - [ ] [Styled Components](https://github.com/styled-components/styled-components)
 
 ### Server

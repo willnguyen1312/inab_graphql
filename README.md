@@ -2,11 +2,44 @@
 
 My toy project for budget management 😊
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/69425d03-404d-45df-87a8-e2863681a801/deploy-status)](https://app.netlify.com/sites/inab/deploys)
+# Tech Stack
+
+Here's a curated list of packages that I use 😎
+
+# Modules Management tool
+
+- [ ] [Yarn](https://yarnpkg.com/)
+- [ ] [Lerna](https://lernajs.io/)
+
+### Web
+
+- [ ] [React](https://facebook.github.io/react/)
+- [ ] [Reach Router](https://reach.tech/router)
+- [ ] [Apollo React](https://www.apollographql.com/docs/react/)
+- [ ] [Formik](https://jaredpalmer.com/formik/)
+- [ ] [Styled Components](https://github.com/styled-components/styled-components)
+
+### Server
+
+- [ ] [Graphql-yoga](https://github.com/prisma/graphql-yoga)
+- [ ] [PostgreSQL](https://www.postgresql.org/)
+- [ ] [TypeORM](https://typeorm.io)
+- [ ] [Redis](https://redis.io/)
+- [ ] [Ioredis](https://github.com/luin/ioredis)
+
+### Unit Testing
+
+- [ ] [Jest](http://facebook.github.io/jest/)
+- [ ] [React-testing-library](https://github.com/kentcdodds/react-testing-library)
+
+### Linting
+
+- [ ] [TSLint](<[http://eslint.org/](https://palantir.github.io/tslint/)>)
+- [ ] [Prettier](https://prettier.io/)
 
 ## Packages
 
-This project is made up of 5 packages that share code using Yarn Workspaces.
+This project is made up of 3 packages that share code powered by Yarn Workspaces and Lerna
 
 - web (React.js website)
 - server (GraphQL Typescript server)
@@ -15,8 +48,8 @@ This project is made up of 5 packages that share code using Yarn Workspaces.
 ## Prerequisite
 
 1. [Yarn](https://yarnpkg.com)
-1. [PostgreSQL](https://www.postgresql.org/)
-1. [Redis](https://redis.io)
+2. [PostgreSQL](https://www.postgresql.org/)
+3. [Redis](https://redis.io)
 
 ## Installation
 

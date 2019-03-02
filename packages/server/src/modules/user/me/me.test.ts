@@ -1,4 +1,5 @@
 import * as faker from 'faker';
+import { TEST_HOST } from 'server/src/config';
 import { Connection } from 'typeorm';
 import { User } from '../../../entity/User';
 import { createTestConn } from '../../../testUtils/createTestConn';
@@ -26,13 +27,13 @@ afterAll(async () => {
 
 describe('me', () => {
   test('return null if no cookie', async () => {
-    const client = new TestClient(process.env.TEST_HOST as string);
+    const client = new TestClient(TEST_HOST);
     const response = await client.me();
     expect(response.data.me).toBeNull();
   });
 
   test('get current user', async () => {
-    const client = new TestClient(process.env.TEST_HOST as string);
+    const client = new TestClient(TEST_HOST);
     await client.login(email, password);
     const response = await client.me();
 

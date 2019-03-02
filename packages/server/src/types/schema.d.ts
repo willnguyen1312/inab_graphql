@@ -21,23 +21,23 @@ declare namespace GQL {
   }
 
   interface IQuery {
-    __typename: "Query";
+    __typename: 'Query';
     me: IUser | null;
   }
 
   interface IUser {
-    __typename: "User";
+    __typename: 'User';
     id: string;
     email: string;
   }
 
   interface IMutation {
-    __typename: "Mutation";
+    __typename: 'Mutation';
     sendForgotPasswordEmail: boolean | null;
-    forgotPasswordChange: Array<IError>;
-    login: Array<IError>;
+    forgotPasswordChange: Array<IError> | null;
+    login: Array<IError> | null;
     logout: boolean | null;
-    register: Array<IError>;
+    register: Array<IError> | null;
   }
 
   interface ISendForgotPasswordEmailOnMutationArguments {
@@ -60,7 +60,7 @@ declare namespace GQL {
   }
 
   interface IError {
-    __typename: "Error";
+    __typename: 'Error';
     path: string;
     message: string;
   }

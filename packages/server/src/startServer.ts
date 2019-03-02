@@ -6,7 +6,7 @@ import * as session from 'express-session';
 import { GraphQLServer } from 'graphql-yoga';
 import * as RateLimitRedisStore from 'rate-limit-redis';
 import 'reflect-metadata';
-import { IS_PROD, IS_TEST } from './config';
+import { FRONTEND_HOST, IS_PROD, IS_TEST, PORT } from './config';
 import { redisSessionPrefix } from './constants';
 import { redis } from './redis';
 import { confirmEmail } from './routes/confirmEmail';
@@ -63,7 +63,7 @@ export const startServer = async () => {
 
   const cors = {
     credentials: true,
-    origin: IS_TEST ? '*' : (process.env.FRONTEND_HOST as string),
+    origin: IS_TEST ? '*' : FRONTEND_HOST,
   };
 
   server.express.get('/confirm/:id', confirmEmail);
@@ -74,7 +74,7 @@ export const startServer = async () => {
     await createTypeormConn();
   }
 
-  const port = IS_TEST ? 0 : process.env.PORT || 4000;
+  const port = IS_TEST ? 0 : PORT || 4000;
   const app = await server.start({
     cors,
     port,

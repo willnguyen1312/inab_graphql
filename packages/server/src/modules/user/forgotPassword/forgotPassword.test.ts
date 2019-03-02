@@ -1,5 +1,6 @@
 import * as faker from 'faker';
 import * as Redis from 'ioredis';
+import { TEST_HOST } from 'server/src/config';
 import { Connection } from 'typeorm';
 import { User } from '../../../entity/User';
 import { createTestConn } from '../../../testUtils/createTestConn';
@@ -34,7 +35,7 @@ afterAll(async () => {
 
 describe('forgot password', () => {
   test('make sure it works', async () => {
-    const client = new TestClient(process.env.TEST_HOST as string);
+    const client = new TestClient(TEST_HOST);
 
     // lock account
     await forgotPasswordLockAccount(userId, redis);
@@ -75,7 +76,7 @@ describe('forgot password', () => {
 
     // make sure redis key expires after password change
     expect(
-      await client.forgotPasswordChange(faker.internet.password(), key),
+      await client.forgotPasswordChange(faker.internet.password(), key)
     ).toEqual({
       data: {
         forgotPasswordChange: [

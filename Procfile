@@ -1,0 +1,1 @@
+web: cd ./packages/server/dist/server/src/ && node .

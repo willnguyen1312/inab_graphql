@@ -1,4 +1,5 @@
 import * as faker from 'faker';
+import { TEST_HOST } from 'server/src/config';
 import { Connection } from 'typeorm';
 import { User } from '../../../entity/User';
 import { createTestConn } from '../../../testUtils/createTestConn';
@@ -27,9 +28,9 @@ afterAll(async () => {
 describe('logout', () => {
   test('multiple sessions', async () => {
     // computer 1
-    const sess1 = new TestClient(process.env.TEST_HOST as string);
+    const sess1 = new TestClient(TEST_HOST);
     // computer 2
-    const sess2 = new TestClient(process.env.TEST_HOST as string);
+    const sess2 = new TestClient(TEST_HOST);
 
     await sess1.login(email, password);
     await sess2.login(email, password);
@@ -39,7 +40,7 @@ describe('logout', () => {
   });
 
   test('single session', async () => {
-    const client = new TestClient(process.env.TEST_HOST as string);
+    const client = new TestClient(TEST_HOST);
 
     await client.login(email, password);
 

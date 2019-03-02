@@ -1,4 +1,5 @@
 import * as faker from 'faker';
+import { TEST_HOST } from 'server/src/config';
 import { Connection } from 'typeorm';
 import { User } from '../../../entity/User';
 import { createTestConn } from '../../../testUtils/createTestConn';
@@ -14,7 +15,7 @@ faker.seed(Date.now() + 5);
 const email = faker.internet.email();
 const password = faker.internet.password();
 
-const client = new TestClient(process.env.TEST_HOST as string);
+const client = new TestClient(TEST_HOST);
 
 let conn: Connection;
 beforeAll(async () => {

@@ -1,3 +1,4 @@
+import { logInfo } from '@inab/common';
 import * as connectRedis from 'connect-redis';
 import 'dotenv/config';
 import * as RateLimit from 'express-rate-limit';
@@ -39,7 +40,7 @@ export const startServer = async () => {
       windowMs: 15 * 60 * 1000, // 15 minutes
       max: 100, // limit each IP to 100 requests per windowMs
       delayMs: 0, // disable delaying - full speed until the max limit is reached
-    }),
+    })
   );
 
   server.express.use(
@@ -57,7 +58,7 @@ export const startServer = async () => {
         secure: IS_PROD,
         maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       },
-    } as any),
+    } as any)
   );
 
   const cors = {
@@ -78,8 +79,7 @@ export const startServer = async () => {
     cors,
     port,
   });
-  // tslint:disable-next-line: no-console
-  console.log(`Server is running on port ${port}`);
+  logInfo(`Server is running on port ${port}`);
 
   return app;
 };

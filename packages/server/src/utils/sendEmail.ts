@@ -1,13 +1,10 @@
+import { logError, logInfo } from '@inab/common';
 import * as nodemailer from 'nodemailer';
 
-export const sendEmail = async (
-  recipient: string,
-  url: string,
-  linkText: string,
-) => {
-  nodemailer.createTestAccount((err1, account) => {
-    if (err1) {
-      console.log(err1);
+export const sendEmail = async (recipient: string, url: string, linkText: string) => {
+  nodemailer.createTestAccount((err, account) => {
+    if (err) {
+      logError(err);
     }
     const transporter = nodemailer.createTransport({
       host: account.smtp.host,
@@ -32,14 +29,14 @@ export const sendEmail = async (
         </html>`,
     };
 
-    transporter.sendMail(message, (err, info) => {
-      if (err) {
-        console.log('Error occurred. ' + err.message);
+    transporter.sendMail(message, (err1, info) => {
+      if (err1) {
+        logError('Error occurred. ' + err1.message);
       }
 
-      console.log('Message sent: %s', info.messageId);
+      logInfo('Message sent: %s', info.messageId);
       // Preview only available when sending through an Ethereal account
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      logInfo('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     });
   });
 };

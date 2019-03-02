@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./dist && tsc",
-    "build:watch": "tsc --watch"
+    "build:watch": "tsc --watch",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@types/yup": "^0.24.6",

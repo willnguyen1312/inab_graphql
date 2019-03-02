@@ -1,3 +1,4 @@
+import { logError } from '@inab/common';
 import { ResolverMap } from '../../../types/graphql-utils';
 import { removeAllUsersSessions } from '../../../utils/removeAllUsersSessions';
 
@@ -9,8 +10,7 @@ export const resolvers: ResolverMap = {
         removeAllUsersSessions(userId, redis);
         session.destroy(err => {
           if (err) {
-            // tslint:disable-next-line: no-console
-            console.log(err);
+            logError(err);
           }
         });
         return true;

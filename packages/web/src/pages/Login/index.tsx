@@ -1,4 +1,4 @@
-import { signUpSchema } from '@inab/common';
+import { logInfo, signUpSchema } from '@inab/common';
 import { RouteComponentProps } from '@reach/router';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import gql from 'graphql-tag';
@@ -17,7 +17,13 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
+const LoginPage = (props: RouteComponentProps<{}>) => {
+  logInfo(props.location!.state);
+  let prevRoute;
+
+  if (props.location!.state) {
+    prevRoute = props.location!.state.prevRoute;
+  }
   const [state, setState] = useState({
     success: false,
     errors: [],
@@ -50,7 +56,7 @@ const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
                     })) as any;
 
                     if (!response.login) {
-                      navigate!('/');
+                      props!.navigate!(prevRoute ? prevRoute : '/');
                     } else {
                       setState({
                         success: false,

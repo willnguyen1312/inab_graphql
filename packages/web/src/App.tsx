@@ -4,6 +4,7 @@ import { SERVER_URL } from 'config';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Flex } from 'rebass';
+import AuthRoute from './modules/auth/AuthRoute';
 
 const client = new ApolloClient({
   uri: SERVER_URL,
@@ -45,7 +46,7 @@ const App = () => (
           <Home path="/" />
           <Login path="/login" />
           <Register path="/register" />
-          <Me path="/me" />
+          <AuthRoute as={Me} path="/me" />
         </Router>
       </React.Suspense>
     </Flex>

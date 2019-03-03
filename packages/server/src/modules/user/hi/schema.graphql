@@ -1,0 +1,7 @@
+type Query {
+  hi: HiBack
+}
+
+type HiBack {
+  message: String!
+}

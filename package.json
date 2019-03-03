@@ -46,6 +46,10 @@
   },
   "resolutions": {
     "@types/react": "^16.8.3",
-    "terser": "^3.14.1"
+    "terser": "^3.14.1",
+    "graphql": "^14.1.1"
+  },
+  "dependencies": {
+    "graphql": "^14.1.1"
   }
 }

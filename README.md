@@ -37,7 +37,7 @@ Here's a curated list of packages that I use 😎
 
 ### Linting
 
-- [ ] [TSLint](<[http://eslint.org/](https://palantir.github.io/tslint/)>)
+- [ ] [TSLint](https://palantir.github.io/tslint/)
 - [ ] [Prettier](https://prettier.io/)
 
 ## Packages

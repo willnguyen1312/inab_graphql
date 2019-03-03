@@ -11,6 +11,7 @@ const client = new ApolloClient({
 
 const Home = React.lazy(() => import('./pages/Home'));
 const Login = React.lazy(() => import('./pages/Login'));
+const Register = React.lazy(() => import('./pages/Register'));
 const Me = React.lazy(() => import('./pages/Me'));
 
 const NavLink = props => (
@@ -35,11 +36,13 @@ const App = () => (
         <NavLink to="/">Home</NavLink>
         <NavLink to="/me">Me</NavLink>
         <NavLink to="/login">Login</NavLink>
+        <NavLink to="/register">Register</NavLink>
       </Flex>
       <React.Suspense fallback={'Loading...'}>
         <Router>
           <Home path="/" />
           <Login path="/login" />
+          <Register path="/register" />
           <Me path="/me" />
         </Router>
       </React.Suspense>

@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { IS_PROD } from '../../../config';
 import { User } from '../../../entity/User';
 import { ResolverMap } from '../../../types/graphql-utils';
 import { formatYupError } from '../../../utils/formatYupError';
@@ -57,13 +56,13 @@ export const resolvers: ResolverMap = {
 
       await user.save();
 
-      if (IS_PROD) {
-        await sendEmail(
-          email,
-          await createConfirmEmailLink(url, user.id, redis),
-          'confirm email'
-        );
-      }
+      // if (IS_PROD) {
+      await sendEmail(
+        email,
+        await createConfirmEmailLink(url, user.id, redis),
+        'confirm email'
+      );
+      // }
 
       return null;
     },

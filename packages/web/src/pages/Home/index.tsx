@@ -21,13 +21,7 @@ const Home = (props: RouteComponentProps<{}>) => (
         return <p>Error :(</p>;
       }
 
-      return data.rates.map(({ currency, rate }) => (
-        <div key={currency}>
-          <p>
-            {currency}: {rate}
-          </p>
-        </div>
-      ));
+      return <h1>{data.hi.message}</h1>;
     }}
   </Query>
 );

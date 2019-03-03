@@ -2,22 +2,22 @@ import { signUpSchema } from '@inab/common';
 import { RouteComponentProps } from '@reach/router';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import gql from 'graphql-tag';
+import get from 'lodash/get';
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import { ErrorType } from 'react-app-env';
 import { Button, Flex, Text } from 'rebass';
-import { Login, LoginVariables } from 'types/schemaTypes';
 
-const LOGIN_MUTATION = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+const REGISTER_MUTATION = gql`
+  mutation Register($email: String!, $password: String!) {
+    register(email: $email, password: $password) {
       path
       message
     }
   }
 `;
 
-const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
+const Register = (props: RouteComponentProps<{}>) => {
   const [state, setState] = useState({
     success: false,
     errors: [],
@@ -29,35 +29,33 @@ const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
   const { success, errors } = state;
 
   return (
-    <Flex mb={20} flexDirection="column">
+    <Flex mt={20} flexDirection="column">
       {!success ? (
         <>
           <Text mb={20} fontSize={24}>
-            Hi there!
+            Register form
           </Text>
-          <Mutation mutation={LOGIN_MUTATION}>
-            {login => {
+          <Mutation mutation={REGISTER_MUTATION}>
+            {register => {
               return (
                 <Formik
                   initialValues={{ email: '', password: '' }}
                   validationSchema={signUpSchema}
-                  onSubmit={async (
-                    values: LoginVariables,
-                    { setSubmitting }
-                  ) => {
-                    const { data: response }: { data: Login } = (await login({
-                      variables: values,
-                    })) as any;
-
-                    if (!response.login) {
-                      navigate!('/');
+                  onSubmit={async (values, { setSubmitting }) => {
+                    const response = await register({ variables: values });
+                    const listOfError = get(response, 'data.register');
+                    if (!listOfError) {
+                      setState({
+                        success: true,
+                        errors: [],
+                      });
                     } else {
                       setState({
                         success: false,
-                        errors: response.login,
+                        errors: listOfError,
                       });
-                      setSubmitting(false);
                     }
+                    setSubmitting(false);
                   }}
                 >
                   {({ isSubmitting }) => (
@@ -81,7 +79,7 @@ const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
                         </Flex>
                         <Flex>
                           <Button type="submit" disabled={isSubmitting}>
-                            Submit
+                            Sign up
                           </Button>
                         </Flex>
                       </Flex>
@@ -92,7 +90,9 @@ const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
             }}
           </Mutation>
         </>
-      ) : null}
+      ) : (
+        <Text fontSize={20}>Thanks!!!</Text>
+      )}
 
       {errors.length
         ? errors.map(error => {
@@ -107,4 +107,4 @@ const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
   );
 };
 
-export default LoginPage;
+export default Register;

@@ -5,3 +5,8 @@ declare namespace NodeJS {
     REACT_APP_SERVER_URL: string;
   }
 }
+
+export interface ErrorType {
+  path: string;
+  message: string;
+}

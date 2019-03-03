@@ -95,10 +95,10 @@ const Register = (props: RouteComponentProps<{}>) => {
       )}
 
       {errors.length
-        ? errors.map(error => {
+        ? errors.map(({ message, path }) => {
             return (
-              <Text>
-                {error.path} {error.message}
+              <Text key={message}>
+                {path} {message}
               </Text>
             );
           })

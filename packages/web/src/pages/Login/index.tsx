@@ -95,10 +95,10 @@ const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
       ) : null}
 
       {errors.length
-        ? errors.map(error => {
+        ? errors.map(({ path, message }) => {
             return (
-              <Text>
-                {error.path} {error.message}
+              <Text key={message}>
+                {path} {message}
               </Text>
             );
           })

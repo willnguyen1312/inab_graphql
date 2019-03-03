@@ -1,35 +1,31 @@
-import { Redirect, RouteComponentProps } from '@reach/router';
+import { RouteComponentProps } from '@reach/router';
+import gql from 'graphql-tag';
 import React from 'react';
-import { Box, Flex, Text } from 'rebass';
-import styled from 'styled-components';
-import useAuth from '../../hooks/useAuth';
+import { ChildProps, graphql } from 'react-apollo';
+import { Flex, Text } from 'rebass';
+import { MeQuery } from 'types/schemaTypes';
 
-const LoadingOverlay = styled(Box)`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: lightgray;
+type Props = RouteComponentProps;
+
+const meQuery = gql`
+  query MeQuery {
+    me {
+      email
+    }
+  }
 `;
 
-const Me = (props: RouteComponentProps<{}>) => {
-  const auth = useAuth();
+const MePage = (props: ChildProps<Props, MeQuery>) => {
+  const { data } = props;
 
   return (
-    <Flex flexDirection="column" mt={20}>
-      {(() => {
-        switch (auth) {
-          case undefined:
-            return <LoadingOverlay>Loading...</LoadingOverlay>;
-          case false:
-            return <Redirect noThrow to="/login" />;
-          default:
-            return <Text fontSize={20}>Me</Text>;
-        }
-      })()}
+    <Flex pt={2} flexDirection="column">
+      <Text mb={2} fontSize={20} fontWeight="bold">
+        Me page:
+      </Text>
+      {data!.loading ? <Text>Loading...</Text> : <Text>{data!.me!.email}</Text>}
     </Flex>
   );
 };
 
-export default Me;
+export default graphql<Props, MeQuery>(meQuery)(MePage);

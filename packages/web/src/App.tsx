@@ -1,5 +1,5 @@
 import { Link, Router } from '@reach/router';
-import ApolloClient from 'apollo-boost';
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { SERVER_URL } from 'config';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
@@ -7,6 +7,8 @@ import { Flex } from 'rebass';
 
 const client = new ApolloClient({
   uri: SERVER_URL,
+  credentials: 'include',
+  cache: new InMemoryCache(),
 });
 
 const Home = React.lazy(() => import('./pages/Home'));

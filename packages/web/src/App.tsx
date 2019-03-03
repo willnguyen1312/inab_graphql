@@ -22,7 +22,7 @@ const NavLink = props => (
 );
 
 const App = () => (
-  <Flex flexDirection="column">
+  <Flex pl={15} pt={15} flexDirection="column">
     <Flex>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/me">Me</NavLink>

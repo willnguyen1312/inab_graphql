@@ -2,7 +2,7 @@
 
 My toy project for budget management 😊
 
-You can read more about the motivation here - https://namnguyen.design/blog/2019-03-02-introducing-inab-app-aka-i-need-a-budget-%F0%9F%92%B8/ 🗽
+You can read more about the motivation <a href="https://namnguyen.design/blog/2019-03-02-introducing-inab-app-aka-i-need-a-budget-%F0%9F%92%B8/" target="_blank">here</a> 🗽
 
 # Tech Stack
 

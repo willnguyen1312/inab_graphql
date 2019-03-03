@@ -1,5 +1,5 @@
-import { Link, Router } from '@reach/router';
-import ApolloClient, { InMemoryCache } from 'apollo-boost';
+import { Link, navigate, Router } from '@reach/router';
+import ApolloClient, { gql, InMemoryCache } from 'apollo-boost';
 import { SERVER_URL } from 'config';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
@@ -16,6 +16,12 @@ const Home = React.lazy(() => import('./pages/Home'));
 const Login = React.lazy(() => import('./pages/Login'));
 const Register = React.lazy(() => import('./pages/Register'));
 const Me = React.lazy(() => import('./pages/Me'));
+
+const LogoutMutation = gql`
+  mutation LogOut {
+    logout
+  }
+`;
 
 const NavLink = props => (
   <Link
@@ -40,6 +46,20 @@ const App = () => (
         <NavLink to="/me">Me</NavLink>
         <NavLink to="/login">Login</NavLink>
         <NavLink to="/register">Register</NavLink>
+        <button
+          style={{
+            cursor: 'pointer',
+          }}
+          onClick={async () => {
+            await client.mutate({
+              mutation: LogoutMutation,
+            });
+            client.resetStore();
+            navigate('/login');
+          }}
+        >
+          Logout
+        </button>
       </Flex>
       <React.Suspense fallback={'Loading...'}>
         <Router>

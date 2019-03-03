@@ -1,4 +1,4 @@
-import { logInfo, signUpSchema } from '@inab/common';
+import { signUpSchema } from '@inab/common';
 import { RouteComponentProps } from '@reach/router';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import gql from 'graphql-tag';
@@ -17,8 +17,15 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
+const meQuery = gql`
+  query MeQuery {
+    me {
+      email
+    }
+  }
+`;
+
 const LoginPage = (props: RouteComponentProps<{}>) => {
-  logInfo(props.location!.state);
   let prevRoute;
 
   if (props.location!.state) {
@@ -42,7 +49,7 @@ const LoginPage = (props: RouteComponentProps<{}>) => {
             Hi there!
           </Text>
           <Mutation mutation={LOGIN_MUTATION}>
-            {login => {
+            {(login, { client }) => {
               return (
                 <Formik
                   initialValues={{ email: '', password: '' }}
@@ -54,6 +61,11 @@ const LoginPage = (props: RouteComponentProps<{}>) => {
                     const { data: response }: { data: Login } = (await login({
                       variables: values,
                     })) as any;
+
+                    await client.query({
+                      query: meQuery,
+                      fetchPolicy: 'network-only',
+                    });
 
                     if (!response.login) {
                       props!.navigate!(prevRoute ? prevRoute : '/');

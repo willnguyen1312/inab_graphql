@@ -97,6 +97,17 @@ yarn start
 
 # TODO
 
+- [x] Add Login page
+- [x] Add Register page
+- [x] Add Home page
+- [x] Add Me page
+- [ ] Provide register functionality
+- [ ] Provide email verification with Nodemailer
+- [ ] Authenticate at the client
+- [ ] Design Expense entity
+- [ ] Add Expense page
+- [ ] Provide aggregation for charting
+- [ ] Privide customization on how data should be displayed
 - [ ] Deployment instructions
 
 P/s: The app's architecture was inspired by [fullstack-graphql-airbnb-cline](https://github.com/benawad/fullstack-graphql-airbnb-clone)

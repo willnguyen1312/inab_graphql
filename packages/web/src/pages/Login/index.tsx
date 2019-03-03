@@ -29,10 +29,10 @@ const LoginPage = ({ navigate }: RouteComponentProps<{}>) => {
   const { success, errors } = state;
 
   return (
-    <Flex mb={20} flexDirection="column">
+    <Flex pt={2} flexDirection="column">
       {!success ? (
         <>
-          <Text mb={20} fontSize={24}>
+          <Text mb={2} fontSize={24}>
             Hi there!
           </Text>
           <Mutation mutation={LOGIN_MUTATION}>

@@ -31,14 +31,7 @@ const Login = (props: RouteComponentProps<{}>) => (
               <ErrorMessage name="password" component="div" />
             </Flex>
             <Flex>
-              <Button
-                // @ts-ignore
-                css={`
-                  cursor: pointer;
-                `}
-                type="submit"
-                disabled={isSubmitting}
-              >
+              <Button type="submit" disabled={isSubmitting}>
                 Submit
               </Button>
             </Flex>

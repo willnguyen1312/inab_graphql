@@ -51,24 +51,33 @@ const App = props => {
         <Flex pl={15} pt={15} flexDirection="column">
           <Flex>
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/me">Me</NavLink>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register">Register</NavLink>
-            {isAuth && (
-              <button
-                style={{
-                  cursor: 'pointer',
-                }}
-                onClick={async () => {
-                  await client.mutate({
-                    mutation: LogoutMutation,
-                  });
-                  client.resetStore();
-                  navigate('/login-');
-                }}
-              >
-                Logout
-              </button>
+            {isAuth ? (
+              <>
+                <NavLink to="/me">Me</NavLink>
+                <button
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                  onClick={async () => {
+                    await client.mutate({
+                      mutation: LogoutMutation,
+                    });
+                    await client.query({
+                      query: meQuery,
+                      fetchPolicy: 'network-only',
+                    });
+                    client.resetStore();
+                    navigate('/');
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/register">Register</NavLink>
+              </>
             )}
           </Flex>
           <React.Suspense fallback={'Loading...'}>

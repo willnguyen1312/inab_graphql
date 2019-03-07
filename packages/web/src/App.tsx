@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost';
 import React from 'react';
 import { ApolloConsumer, graphql } from 'react-apollo';
 import { Flex } from 'rebass';
+import { ME_QUERY } from 'shared/queries';
 import AuthRoute from './modules/auth/AuthRoute';
 
 const Home = React.lazy(() => import('./pages/Home'));
@@ -31,14 +32,6 @@ const NavLink = props => (
   />
 );
 
-const meQuery = gql`
-  query MeQuery {
-    me {
-      email
-    }
-  }
-`;
-
 const App = props => {
   const {
     data: { loading, me },
@@ -61,10 +54,6 @@ const App = props => {
                   onClick={async () => {
                     await client.mutate({
                       mutation: LogoutMutation,
-                    });
-                    await client.query({
-                      query: meQuery,
-                      fetchPolicy: 'network-only',
                     });
                     client.resetStore();
                     navigate('/');
@@ -94,4 +83,4 @@ const App = props => {
   );
 };
 
-export default graphql(meQuery)(App);
+export default graphql(ME_QUERY)(App);

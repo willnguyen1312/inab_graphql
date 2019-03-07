@@ -1,20 +1,12 @@
 import { Redirect, RouteComponentProps } from '@reach/router';
-import gql from 'graphql-tag';
 import React from 'react';
 import { ChildProps, graphql } from 'react-apollo';
+import { ME_QUERY } from 'shared/queries';
 import { MeQuery } from '../../types/schemaTypes';
 
 type Props = RouteComponentProps & {
   as: React.FC;
 };
-
-const meQuery = gql`
-  query MeQuery {
-    me {
-      email
-    }
-  }
-`;
 
 const MePage = (props: ChildProps<Props, MeQuery>) => {
   const { data, as: Comp, ...rest } = props;
@@ -41,4 +33,4 @@ const MePage = (props: ChildProps<Props, MeQuery>) => {
   return <Component {...rest} />;
 };
 
-export default graphql<Props, MeQuery>(meQuery)(MePage);
+export default graphql<Props, MeQuery>(ME_QUERY)(MePage);

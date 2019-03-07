@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import { ErrorType } from 'react-app-env';
 import { Button, Flex, Text } from 'rebass';
+import { ME_QUERY } from 'shared/queries';
 import { Login, LoginVariables } from 'types/schemaTypes';
 
 const LOGIN_MUTATION = gql`
@@ -13,14 +14,6 @@ const LOGIN_MUTATION = gql`
     login(email: $email, password: $password) {
       path
       message
-    }
-  }
-`;
-
-const meQuery = gql`
-  query MeQuery {
-    me {
-      email
     }
   }
 `;
@@ -60,12 +53,13 @@ const LoginPage = (props: RouteComponentProps<{}>) => {
                   ) => {
                     const { data: response }: { data: Login } = (await login({
                       variables: values,
+                      refetchQueries: [
+                        {
+                          query: ME_QUERY,
+                        },
+                      ],
+                      awaitRefetchQueries: true,
                     })) as any;
-
-                    await client.query({
-                      query: meQuery,
-                      fetchPolicy: 'network-only',
-                    });
 
                     if (!response.login) {
                       props!.navigate!(prevRoute ? prevRoute : '/');
